@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Préstamos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h2>Menú</h2>
+            <button class="close-btn" id="closeSidebar">&times;</button>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="#" class="nav-item active" data-section="section1">
+                <span class="nav-icon">📊</span>
+                <span>Calculadora de Préstamos</span>
+            </a>
+            <a href="#" class="nav-item" data-section="section2">
+                <span class="nav-icon">📅</span>
+                <span>Interés Diario</span>
+            </a>
+            <a href="#" class="nav-item" data-section="section3">
+                <span class="nav-icon">💰</span>
+                <span>Liquidación Anticipada</span>
+            </a>
+            <a href="#" class="nav-item" data-section="section4">
+                <span class="nav-icon">🔄</span>
+                <span>Sobrepréstamo</span>
+            </a>
+        </nav>
+    </div>
+
+    <!-- Overlay -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Main App -->
+    <div class="app-container">
+        <header>
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="header-content">
+                <h1>Simulador de Crédito</h1>
+                <p class="subtitle" id="sectionTitle">Calcula tu préstamo ideal</p>
+            </div>
+        </header>
+
+        <!-- Section 1: Loan Calculator -->
+        <main class="section active" id="section1">
+            <section class="card input-section">
+                <label class="section-label">Tipo de Cliente</label>
+                <div class="toggle-container">
+                    <input type="radio" name="clientType1" id="typeN1" value="N" checked>
+                    <label for="typeN1" class="toggle-btn">Cliente N</label>
+                    <input type="radio" name="clientType1" id="typeA1" value="A">
+                    <label for="typeA1" class="toggle-btn">Cliente A</label>
+                </div>
+            </section>
+
+            <section class="card input-section">
+                <label class="section-label" for="amount1">Monto del Préstamo</label>
+                <div class="input-wrapper">
+                    <span class="currency-symbol">$</span>
+                    <input type="number" id="amount1" placeholder="1000 - 10000" min="1000" step="500">
+                </div>
+                <p class="helper-text" id="amountHelper1">Mín: $1,000 - Máx: $10,000</p>
+            </section>
+
+            <section class="card input-section">
+                <label class="section-label">Plazo (Meses)</label>
+                <div class="chips-container" id="termContainer1">
+                    <div class="chip-wrapper">
+                        <input type="radio" name="term1" id="term12_1" value="12" checked>
+                        <label for="term12_1" class="chip">
+                            <span class="term-val">12</span>
+                            <span class="term-rate">58%</span>
+                        </label>
+                    </div>
+                    <div class="chip-wrapper">
+                        <input type="radio" name="term1" id="term18_1" value="18" disabled>
+                        <label for="term18_1" class="chip">
+                            <span class="term-val">18</span>
+                            <span class="term-rate">67.5%</span>
+                        </label>
+                    </div>
+                    <div class="chip-wrapper">
+                        <input type="radio" name="term1" id="term24_1" value="24" disabled>
+                        <label for="term24_1" class="chip">
+                            <span class="term-val">24</span>
+                            <span class="term-rate">92%</span>
+                        </label>
+                    </div>
+                </div>
+            </section>
+
+            <div class="actions">
+                <button id="btnCalculate1" class="btn btn-primary">Calcular</button>
+                <button id="btnCalculateAll1" class="btn btn-secondary">Ver Todas las Opciones</button>
+            </div>
+
+            <section id="resultsSection1" class="results-container hidden">
+                <h2>Resultados</h2>
+                <div id="resultsList1"></div>
+            </section>
+        </main>
+
+        <!-- Section 2: Daily Interest Calculator -->
+        <main class="section" id="section2">
+            <section class="card input-section">
+                <label class="section-label">Tipo de Cliente</label>
+                <div class="toggle-container">
+                    <input type="radio" name="clientType2" id="typeN2" value="N" checked>
+                    <label for="typeN2" class="toggle-btn">Cliente N</label>
+                    <input type="radio" name="clientType2" id="typeA2" value="A">
+                    <label for="typeA2" class="toggle-btn">Cliente A</label>
+                </div>
+            </section>
+
+            <section class="card input-section">
+                <label class="section-label" for="amount2">Monto Original del Préstamo</label>
+                <div class="input-wrapper">
+                    <span class="currency-symbol">$</span>
+                    <input type="number" id="amount2" placeholder="1000 - 10000" min="1000" step="500">
+                </div>
+                <p class="helper-text" id="amountHelper2">Mín: $1,000 - Máx: $10,000</p>
+            </section>
+
+            <section class="card input-section">
+                <label class="section-label">Plazo (Meses)</label>
+                <div class="chips-container" id="termContainer2">
+                    <div class="chip-wrapper">
+                        <input type="radio" name="term2" id="term12_2" value="12" checked>
+                        <label for="term12_2" class="chip">
+                            <span class="term-val">12</span>
+                            <span class="term-rate">58%</span>
+                        </label>
+                    </div>
+                    <div class="chip-wrapper">
+                        <input type="radio" name="term2" id="term18_2" value="18" disabled>
+                        <label for="term18_2" class="chip">
+                            <span class="term-val">18</span>
+                            <span class="term-rate">67.5%</span>
+                        </label>
+                    </div>
+                    <div class="chip-wrapper">
+                        <input type="radio" name="term2" id="term24_2" value="24" disabled>
+                        <label for="term24_2" class="chip">
+                            <span class="term-val">24</span>
+                            <span class="term-rate">92%</span>
+                        </label>
+                    </div>
+                </div>
+            </section>
+
+            <div class="actions">
+                <button id="btnCalculate2" class="btn btn-primary">Calcular Interés Diario</button>
+            </div>
+
+            <section id="resultsSection2" class="results-container hidden">
+                <h2>Resultado</h2>
+                <div id="resultsList2"></div>
+            </section>
+        </main>
+
+        <!-- Section 3: Early Payoff Calculator -->
+        <main class="section" id="section3">
+            <section class="card input-section">
+                <label class="section-label">Tipo de Cliente</label>
+                <div class="toggle-container">
+                    <input type="radio" name="clientType3" id="typeN3" value="N" checked>
+                    <label for="typeN3" class="toggle-btn">Cliente N</label>
+                    <input type="radio" name="clientType3" id="typeA3" value="A">
+                    <label for="typeA3" class="toggle-btn">Cliente A</label>
+                </div>
+            </section>
+
+            <section class="card input-section">
+                <label class="section-label" for="amount3">Monto Original del Préstamo</label>
+                <div class="input-wrapper">
+                    <span class="currency-symbol">$</span>
+                    <input type="number" id="amount3" placeholder="1000 - 10000" min="1000" step="500">
+                </div>
+                <p class="helper-text" id="amountHelper3">Mín: $1,000 - Máx: $10,000</p>
+            </section>
+
+            <section class="card input-section">
+                <label class="section-label">Plazo (Meses)</label>
+                <div class="chips-container" id="termContainer3">
+                    <div class="chip-wrapper">
+                        <input type="radio" name="term3" id="term12_3" value="12" checked>
+                        <label for="term12_3" class="chip">
+                            <span class="term-val">12</span>
+                            <span class="term-rate">58%</span>
+                        </label>
+                    </div>
+                    <div class="chip-wrapper">
+                        <input type="radio" name="term3" id="term18_3" value="18" disabled>
+                        <label for="term18_3" class="chip">
+                            <span class="term-val">18</span>
+                            <span class="term-rate">67.5%</span>
+                        </label>
+                    </div>
+                    <div class="chip-wrapper">
+                        <input type="radio" name="term3" id="term24_3" value="24" disabled>
+                        <label for="term24_3" class="chip">
+                            <span class="term-val">24</span>
+                            <span class="term-rate">92%</span>
+                        </label>
+                    </div>
+                </div>
+            </section>
+
+            <section class="card input-section">
+                <label class="section-label" for="loanDate">Fecha del Préstamo</label>
+                <input type="date" id="loanDate" class="date-input">
+            </section>
+
+            <section class="card input-section">
+                <label class="section-label" for="payoffDate">Fecha de Liquidación</label>
+                <input type="date" id="payoffDate" class="date-input">
+            </section>
+
+            <section class="card input-section hidden" id="paymentStatusContainer">
+                <label class="section-label">¿Ya realizó el pago de este mes?</label>
+                <div class="toggle-container">
+                    <input type="radio" name="paymentStatus" id="paymentNo" value="no" checked>
+                    <label for="paymentNo" class="toggle-btn">No</label>
+                    <input type="radio" name="paymentStatus" id="paymentYes" value="yes">
+                    <label for="paymentYes" class="toggle-btn">Sí</label>
+                </div>
+                <p class="helper-text">Indique si ya realizó el pago mensual correspondiente a este mes</p>
+            </section>
+
+            <div class="actions">
+                <button id="btnCalculate3" class="btn btn-primary">Calcular Liquidación</button>
+            </div>
+
+            <section id="resultsSection3" class="results-container hidden">
+                <h2>Resultado</h2>
+                <div id="resultsList3"></div>
+            </section>
+        </main>
+
+        <!-- Section 4: Over-Loan Calculator -->
+        <main class="section" id="section4">
+            <section class="card input-section">
+                <label class="section-label">Tipo de Cliente</label>
+                <div class="toggle-container">
+                    <input type="radio" name="clientType4" id="typeN4" value="N" checked>
+                    <label for="typeN4" class="toggle-btn">Cliente N</label>
+                    <input type="radio" name="clientType4" id="typeA4" value="A">
+                    <label for="typeA4" class="toggle-btn">Cliente A</label>
+                </div>
+            </section>
+
+            <div class="section-divider">
+                <h3 class="subsection-title">Préstamo Anterior</h3>
+            </div>
+
+            <section class="card input-section">
+                <label class="section-label" for="prevAmount">Monto Original</label>
+                <div class="input-wrapper">
+                    <span class="currency-symbol">$</span>
+                    <input type="number" id="prevAmount" placeholder="1000 - 10000" min="1000" step="500">
+                </div>
+                <p class="helper-text" id="prevAmountHelper">Mín: $1,000 - Máx: $10,000</p>
+            </section>
+
+            <section class="card input-section">
+                <label class="section-label">Plazo del Préstamo Anterior</label>
+                <div class="chips-container" id="prevTermContainer">
+                    <div class="chip-wrapper">
+                        <input type="radio" name="prevTerm" id="prevTerm12" value="12" checked>
+                        <label for="prevTerm12" class="chip">
+                            <span class="term-val">12</span>
+                            <span class="term-rate">58%</span>
+                        </label>
+                    </div>
+                    <div class="chip-wrapper">
+                        <input type="radio" name="prevTerm" id="prevTerm18" value="18" disabled>
+                        <label for="prevTerm18" class="chip">
+                            <span class="term-val">18</span>
+                            <span class="term-rate">67.5%</span>
+                        </label>
+                    </div>
+                    <div class="chip-wrapper">
+                        <input type="radio" name="prevTerm" id="prevTerm24" value="24" disabled>
+                        <label for="prevTerm24" class="chip">
+                            <span class="term-val">24</span>
+                            <span class="term-rate">92%</span>
+                        </label>
+                    </div>
+                </div>
+            </section>
+
+            <section class="card input-section">
+                <label class="section-label" for="prevLoanDate">Fecha del Préstamo Anterior</label>
+                <input type="date" id="prevLoanDate" class="date-input">
+            </section>
+
+            <section class="card input-section">
+                <label class="section-label" for="currentDate">Fecha de Liquidación (Hoy)</label>
+                <input type="date" id="currentDate" class="date-input">
+            </section>
+
+            <section class="card input-section hidden" id="paymentStatusContainer4">
+                <label class="section-label">¿Ya realizó el pago de este mes?</label>
+                <div class="toggle-container">
+                    <input type="radio" name="paymentStatus4" id="payment4No" value="no" checked>
+                    <label for="payment4No" class="toggle-btn">No</label>
+                    <input type="radio" name="paymentStatus4" id="payment4Yes" value="yes">
+                    <label for="payment4Yes" class="toggle-btn">Sí</label>
+                </div>
+                <p class="helper-text">Indique si ya realizó el pago mensual correspondiente a este mes</p>
+            </section>
+
+            <div class="section-divider">
+                <h3 class="subsection-title">Nuevo Préstamo</h3>
+            </div>
+
+            <section class="card input-section">
+                <label class="section-label" for="newAmount">Monto Adicional a Prestar</label>
+                <div class="input-wrapper">
+                    <span class="currency-symbol">$</span>
+                    <input type="number" id="newAmount" placeholder="1000" min="1000" step="500">
+                </div>
+                <p class="helper-text" id="newAmountHelper">Monto nuevo a agregar</p>
+            </section>
+
+            <section class="card input-section">
+                <label class="section-label">Plazo del Nuevo Préstamo</label>
+                <div class="chips-container" id="newTermContainer">
+                    <div class="chip-wrapper">
+                        <input type="radio" name="newTerm" id="newTerm12" value="12" checked>
+                        <label for="newTerm12" class="chip">
+                            <span class="term-val">12</span>
+                            <span class="term-rate">58%</span>
+                        </label>
+                    </div>
+                    <div class="chip-wrapper">
+                        <input type="radio" name="newTerm" id="newTerm18" value="18" disabled>
+                        <label for="newTerm18" class="chip">
+                            <span class="term-val">18</span>
+                            <span class="term-rate">67.5%</span>
+                        </label>
+                    </div>
+                    <div class="chip-wrapper">
+                        <input type="radio" name="newTerm" id="newTerm24" value="24" disabled>
+                        <label for="newTerm24" class="chip">
+                            <span class="term-val">24</span>
+                            <span class="term-rate">92%</span>
+                        </label>
+                    </div>
+                </div>
+            </section>
+
+            <div class="actions">
+                <button id="btnCalculate4" class="btn btn-primary">Calcular Sobrepréstamo</button>
+            </div>
+
+            <section id="resultsSection4" class="results-container hidden">
+                <h2>Resultado</h2>
+                <div id="resultsList4"></div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
